@@ -2,7 +2,7 @@ import "./App.css";
 import ExcelExportar from "./ExcelExportar";
 
 function App() {
-  const DadosDoArquivo = [
+  const DadosJson = [
     {
       nome: "Pedro",
       idade: 10,
@@ -26,10 +26,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <div>POC para criação e download de planilha</div>
-        <ExcelExportar
-          dadosDoArquivo={DadosDoArquivo}
-          nomeDoArquivo={NomeDoArquivo}
-        />
+        <ExcelExportar dadosJson={DadosJson} nomeDoArquivo={NomeDoArquivo} />
       </header>
     </div>
   );

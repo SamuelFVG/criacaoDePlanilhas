@@ -2,16 +2,16 @@ import React from "react";
 import * as FileSaver from "file-saver";
 import XLSX from "sheetjs-style";
 
-const ExcelExportar = ({ dadosDoArquivo, nomeDoArquivo }) => {
+const ExcelExportar = ({ dadosJson, nomeDoArquivo }) => {
   const tipo =
     "application/vnd.openxmlformats-officedocument.sheet;charset=UTF-8";
   const extensaoArquivo = ".xlsx";
 
   async function exportarParaExcel() {
-    const ws = XLSX.utils.json_to_sheet(dadosDoArquivo);
-    const wb = { Sheets: { data: ws }, SheetNames: ["data"] };
-    const bufferExcel = XLSX.write(wb, { bookType: "xlsx", type: "array" });
-    const arquivo = new Blob([bufferExcel], { type: tipo });
+    const dadosPlanilha = XLSX.utils.json_to_sheet(dadosJson);
+    const planilha = { Sheets: { data: dadosPlanilha }, SheetNames: ["data"] };
+    const buffer = XLSX.write(planilha, { bookType: "xlsx", type: "array" });
+    const arquivo = new Blob([buffer], { type: tipo });
     FileSaver.saveAs(arquivo, nomeDoArquivo + extensaoArquivo);
   }
 
@@ -22,7 +22,7 @@ const ExcelExportar = ({ dadosDoArquivo, nomeDoArquivo }) => {
       style={{
         margin: "1rem",
         padding: "1rem",
-        backgroundColor: "#696969",
+        backgroundColor: "#505050",
         color: "inherit",
         border: "0px",
         borderRadius: "3px",
